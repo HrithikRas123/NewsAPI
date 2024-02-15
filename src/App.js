@@ -12,7 +12,7 @@ extends Component {
         
         <Navbar/>
         <News/>
-      
+
       
       </div>
     )
