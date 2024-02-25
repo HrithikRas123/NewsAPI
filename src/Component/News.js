@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NewsItem from './Newsitems'
-import Spinner from './Spinner';
-import PropTypes from 'prop-types'
+import Spinner from './Spinner'
+import PropTypes from 'prop-types';
 
 
 export class News extends Component {
@@ -28,15 +28,18 @@ export class News extends Component {
     }
 
     async loadingNews(){
-
+        this.props.setProgress(10);
+        
         let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=d98927eb9ca3468c854ef4cbbd9aad06&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({loading: true});
         let data = await fetch(url);
         let parsedData = await data.json()
+        this.props.setProgress(50);
         console.log(parsedData); 
         this.setState({articles: parsedData.articles,
             totalResults: parsedData.totalResults,
             loading: false})
+            this.props.setProgress(100);
 
     }
 
